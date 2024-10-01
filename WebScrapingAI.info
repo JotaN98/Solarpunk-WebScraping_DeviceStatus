@@ -1,0 +1,12 @@
+Types of website scrapers:
+
+Browser-Based: You can use AI to scrape website pages directly from your browser. These web scrapers operate from browsers like Chrome, Firefox, Edge, and Safari. Browser-based web scrapers run locally, which means your data stays with you for better data privacy, However, they operate from your local IP address and residential proxies, so they are better suited to non-intensive scraper operations. These tools also typically have the most user-friendly UI.
+
+Cloud-Based: These scrapers operate from a separate cloud server, securing your local IP from getting blocked through IP rotation. They’re usually more expensive but provide a good option if you require high-volume scraping operations. Cloud-based web scraper AI tools are also available as downloadable local apps on your desktop.
+
+Hybrid: If you can’t decide between browser or cloud-based web scraping tools, why not go for a hybrid scraper? These offer varied scraping features and are often considered the best screen scraping tools for flexibility.
+
+
+Name:           Type:           Pricing:
+Bardeen AI      Browser
+Browse AI
