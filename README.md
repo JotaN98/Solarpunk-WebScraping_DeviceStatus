@@ -1,6 +1,7 @@
 **Solarpunk-Web3depin**
 Project for Solarpunk® in webscraping the status of different devices
 
+
 **5 sistemas web3depin:**
   1º Geodnet (mede as antenas precisão gps)
 
@@ -9,6 +10,7 @@ Project for Solarpunk® in webscraping the status of different devices
   Weatherxm (estações meteorológicas)
   Planetwatch (estações qualidade do ar)
   Wingbits (medir aviões): prov não vai dar
+
 
 **Objs:**
   1º mandar alertas por telegram bot se algum sistema falhar
