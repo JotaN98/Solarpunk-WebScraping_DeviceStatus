@@ -1,19 +1,27 @@
-import requests
-from bs4 import BeautifulSoup
-import pandas as pd
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
 
-url = 'https://console.geodnet.com/4fa3bc0fc013fbd6b89dff9ae2f216efdf3c573d.js?meteor_js_resource=true'
+# Setup Selenium with Chrome options
+options = webdriver.ChromeOptions()
+options.add_argument("--headless")  # Run headless, without opening a browser window
 
-response = requests.get(url)
+# Create a new instance of the Chrome driver
+driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 
-#soup = BeautifulSoup(response,'html.parser')
+# Open the web page
+driver.get('https://console.geodnet.com/map?mount=A0EE9')
 
-with open('page.html','w',encoding='utf-8') as file:
-    file.write(response.text)
+# Wait for the page to load and JavaScript to render
+driver.implicitly_wait(10)  # You can adjust the wait time depending on how long the page takes to load
 
-#for row in soup.findAll('ui mini statistic'):
-#    date = row.find('value')
- #   label = row.find('label')
-  #  print(date)
-   # print(label)
+# Use the full XPath to find the target element
+element = driver.find_element(By.XPATH, '/html/body/div[3]/div[5]/div/aside/div[7]/div[2]/div/div/div[2]/div/div[1]')
 
+# Get the text content of the element
+content = element.text
+print("Scraped content:", content)
+
+# Close the browser
+driver.quit()

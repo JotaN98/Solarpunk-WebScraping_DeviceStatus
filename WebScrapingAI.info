@@ -7,6 +7,12 @@ Cloud-Based: These scrapers operate from a separate cloud server, securing your 
 Hybrid: If you can’t decide between browser or cloud-based web scraping tools, why not go for a hybrid scraper? These offer varied scraping features and are often considered the best screen scraping tools for flexibility.
 
 
-Name:           Type:           Pricing:
-Bardeen AI      Browser
-Browse AI
+Name:           Type:           Pricing:                Comments:
+Bardeen AI      Browser         14 days trial           ...
+Browse AI       Browser         50 credits monthly      buggie
+AnyPicker       Browser         625 Rows monthly
+
+General comment on AI solution:
+The HTML "View Page Source" is different from what you see in "Inspect Element" is because the page is likely dynamically rendered using JavaScript.
+This means the content you're trying to scrape is loaded asynchronously after the initial page load,
+and thus not present in the static HTML source code.
