@@ -9,10 +9,15 @@ Hybrid: If you can’t decide between browser or cloud-based web scraping tools,
 
 Name:           Type:           Pricing:                Comments:
 Bardeen AI      Browser         14 days trial           ...
-Browse AI       Browser         50 credits monthly      buggie
-AnyPicker       Browser         625 Rows monthly
+Browse AI       Browser         50 credits monthly      bugging
+AnyPicker       Browser         625 Rows monthly        not clear how to access the dashboard, almost got the data
+Zyte            API             1 month free trial      AI "free trial" requires card info
+Kadoa           API & Browser   500 credits free        the simplest/easy/intuitive to work with I found until now but only the enterprise subscriptions allows for capturing the interactions with the website( which is needed because we need to click on the blue dot to show the sidepanel)
+Thunderbit      Browser         free                    General AI browser automation (doesn't let me click and scroll the url)
+Octoparser      Browser & Cloud 14 days free?           many options to interact with the website after loading but fails to load...
 
-General comment on AI solution:
+
+General comment on traditional solution:
 The HTML "View Page Source" is different from what you see in "Inspect Element" is because the page is likely dynamically rendered using JavaScript.
 This means the content you're trying to scrape is loaded asynchronously after the initial page load,
 and thus not present in the static HTML source code.

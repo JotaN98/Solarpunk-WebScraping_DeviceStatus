@@ -1,78 +1,86 @@
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from webdriver_manager.chrome import ChromeDriverManager
-import time
+import requests
+import websocket
+import json
+from bs4 import BeautifulSoup
 
-# Setup webdriver
-options = webdriver.ChromeOptions()
-options.add_argument('--start-maximized')
-driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+# WebSocket handshake URL
+ws_url = "https://console.geodnet.com/sockjs/info?t=1728033839262"
+xhr_url = "https://console.geodnet.com/sockjs/259/m51l1etw/xhr_send?t=1728033576301"
 
-# Navigate to the URL
-driver.get("https://console.geodnet.com/map?mount=A0EE9")
+#https://console.geodnet.com/sockjs/info?t=1728033839262
+# Function to establish WebSocket connection
+def on_message(ws, message):
+    print("Received message: ", message)
 
-# Wait for the page to load fully
-WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.TAG_NAME, "body")))
-print("Page loaded successfully!")
 
-# Relative XPaths for the blue dot
-blue_dot_xpath_options = [
-    "/html/body/div[3]/div[5]/div/div[2]/div[1]/div[4]/div[81]/div",
-    "/html/body/div[3]/div[5]/div/div[2]/div[1]/div[4]/div[82]/div"
-]
+def on_error(ws, error):
+    print("Error: ", error)
 
-blue_dot = None
 
-# Loop through possible XPaths to find the blue dot
-for xpath in blue_dot_xpath_options:
-    try:
-        blue_dot = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, xpath)))
-        print(f"Blue dot found using XPath: {xpath}")
-        break
-    except Exception as e:
-        print(f"Couldn't find blue dot using XPath: {xpath} - {e}")
+def on_close(ws, close_status_code, close_msg):
+    print("WebSocket closed with message:", close_msg)
 
-if not blue_dot:
-    print("Failed to locate the blue dot.")
-    driver.quit()
-    exit()
 
-# Scroll into view and click the blue dot using JavaScript
-driver.execute_script("arguments[0].scrollIntoView(true);", blue_dot)
-driver.execute_script("arguments[0].click();", blue_dot)
-print("Clicked on the blue dot!")
+def on_open(ws):
+    print("WebSocket connection opened")
 
-# Wait for the side panel to load
-side_panel_xpath = "/html/body/div[3]/div[5]/div/aside"
-WebDriverWait(driver, 30).until(EC.presence_of_element_located((By.XPATH, side_panel_xpath)))
-print("Side panel loaded successfully!")
 
-# Now attempt to find the "last data packet date" with scrolling
-data_field_xpath = '//*[@id="__blaze-root"]/div[5]/div/aside/div[7]/div[2]/div/div/div[2]/div/div[2]'
-#//*[@id="__blaze-root"]/div[5]/div/aside/div[7]/div[2]/div/div/div[2]/div')
-#'//*[@id="__blaze-root"]/div[5]/div/aside/div[7]/div[2]/div/div/div[2]/div/div[1]')
+# Function to scrape dynamically loaded sidebar
+def scrape_sidebar():
+    # Set headers to replicate the XHR request
+    headers = {
+        "accept": "*/*",
+        "accept-encoding": "gzip, deflate, br, zstd",
+        "accept-language": "en-US,en;q=0.9,pt;q=0.8,pt-PT;q=0.7,es;q=0.6",
+        "content-type": "text/plain",
+        "origin": "https://console.geodnet.com",
+        "referer": "https://console.geodnet.com/map?mount=A0EE9",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
+        "cookie": "__hstc=63041136.8d10ed25a1dfbe5074fafc33708371e9.1727881955528.1727881955528.1727881955528.1; hubspotutk=8d10ed25a1dfbe5074fafc33708371e9; __hssrc=1; x_mtok=jY28EDN86C8SfjwMq"
+    }
 
-# Attempt to scroll and find the element
-for attempt in range(10):  # Try scrolling down 10 times
-    try:
-        # Attempt to locate the data field using XPath
-        data_field = WebDriverWait(driver, 3).until(EC.visibility_of_element_located((By.XPATH, data_field_xpath)))
-        last_packet_date = data_field.text
-        print(f"Last Data Packet Date: {last_packet_date}")
-        break
-    except Exception as e:
-        print(f"Data field not found yet. Attempt {attempt + 1}: {e}")
-        # Scroll down the side panel
-        driver.execute_script("document.querySelector('aside').scrollTop += 300;")  # Adjust scroll amount as needed
-        time.sleep(1)  # Wait a moment for the scroll to take effect
+    # Data payload to simulate the XHR POST request
+    payload = json.dumps(["YOUR_PAYLOAD_DATA_HERE"])
 
-# If the element is still not found, print the page source for debugging
-if 'last data packet date' not in driver.page_source.lower():
-    print("Last data packet date not found in the page source.")
-  #  print(driver.page_source)  # Print the entire page source for debugging
+    # Send XHR POST request
+    response = requests.post(xhr_url, headers=headers, data=payload)
 
-# Close the browser
-driver.quit()
+    if response.status_code == 200:
+        print("XHR request successful")
+        # Parse the dynamically loaded sidebar content
+        parse_sidebar(response.text)
+    else:
+        print(f"XHR request failed with status code {response.status_code}")
+
+
+# Function to parse the sidebar content
+def parse_sidebar(html_content):
+    # Use BeautifulSoup to parse the HTML or JSON response
+    soup = BeautifulSoup(html_content, "html.parser")
+
+    # Find the sidebar element with the class "ww_map_sidebar"
+    sidebar = soup.find("div", class_="ww_map_sidebar")
+
+    if sidebar:
+        print("Sidebar content:")
+        print(sidebar.prettify())
+    else:
+        print("Sidebar not found in the response")
+
+
+# Main function to run the script
+def main():
+    # Establish WebSocket connection
+    ws = websocket.WebSocketApp(ws_url,
+                                on_message=on_message,
+                                on_error=on_error,
+                                on_close=on_close)
+    ws.on_open = on_open
+    ws.run_forever()
+
+    # Perform the XHR request to load sidebar content
+    scrape_sidebar()
+
+
+if __name__ == "__main__":
+    main()
