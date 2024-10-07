@@ -1,7 +1,5 @@
 import requests
 
-
-
 def send_message(message):
     """
     Sends a message to a specified Telegram chat using the Telegram Bot API.
