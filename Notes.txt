@@ -1,9 +1,13 @@
 TODOS:
 - Make a hybrid code
-- Organize devices info into csv
-- separate file from telegram bot
+- store sensitive data
+
+
 
 Meeting notes:
+
+-Perguntar ao manel onde e como é que ele guarda o telegram bot token e chat id
+
 
 -4th Oct-------------------------------------------------------------------------------------------------
 

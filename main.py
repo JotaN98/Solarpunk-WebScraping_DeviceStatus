@@ -6,7 +6,7 @@ def main():
     devices = pandas.read_csv("URL/DEVICES.csv")
 
     #executes web scraping on the url
-    for url in devices["URL"].tolist():
+    for url in devices["URL"]:
         web_scraping.geodnet(url)
 
 
