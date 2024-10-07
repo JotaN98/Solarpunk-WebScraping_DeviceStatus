@@ -1,5 +1,5 @@
-import pandas as pd
-
-df = pd.read_csv('URL/DEVICES.csv')
-
-print(df["URL"])
+with open("tokens.gitignore") as f:
+    text = f.readlines()
+    print(text[0])
+    print("works???")
+    print(text[1])
