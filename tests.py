@@ -1,5 +1,3 @@
-with open("tokens.gitignore") as f:
-    text = f.readlines()
-    print(text[0])
-    print("works???")
-    print(text[1])
+import telegram_bot
+
+telegram_bot.send_message("Test test 123")
