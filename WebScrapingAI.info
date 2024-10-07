@@ -23,16 +23,3 @@ This means the content you're trying to scrape is loaded asynchronously after th
 and thus not present in the static HTML source code.
 
 -------------------------------------------------------------------------------------------------------------------
-Meeting outputs:
-    - Esquecer os Browser based
-    - Go for Kadoa
-
-
-Opt1 Hybrid Python scrip with API AI webscraping:
-    - Continuar a explorar os Cloud base AI webscrapers
-        - Elaborar um script que chame o API dos AI webscrapers com o resultado
-        - Enviar o resultado por msg em telegram
-
-Opt2 Full Python script:
-    - Selenium Script for URL Check, Telegram bot msg and Email msg:
-    https://chatgpt.com/share/66ffd7ea-8690-8001-9b42-63d4aac96fc2
