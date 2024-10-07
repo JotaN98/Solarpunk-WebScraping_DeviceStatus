@@ -1,8 +1,10 @@
 import requests
 
-# Configuration for Telegram
-TELEGRAM_BOT_TOKEN = 'BOT_TOKEN'  # Replace with your bot's API token
-TELEGRAM_CHAT_ID = 'CHAT_ID'  # Replace with your chat ID
+with open("tokens.gitignore") as f:
+    text = f.readlines()
+    # Configuration for Telegram
+    TELEGRAM_BOT_TOKEN = text[0]  # Replace with your bot's API token
+    TELEGRAM_CHAT_ID = text[1]  # Replace with your chat ID
 
 def send_message(message):
     """
