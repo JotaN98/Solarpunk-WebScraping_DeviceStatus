@@ -1,0 +1,38 @@
+TODOS:
+- Make a hybrid code
+- Organize devices info into csv
+- separate file from telegram bot
+
+Meeting notes:
+
+-4th Oct-------------------------------------------------------------------------------------------------
+
+    - Esquecer os Browser based
+    - Go for Kadoa
+
+Opt1 Hybrid Python scrip with API AI webscraping:
+    - Continuar a explorar os Cloud base AI webscrapers
+        - Elaborar um script que chame o API dos AI webscrapers com o resultado
+        - Enviar o resultado por msg em telegram
+
+Opt2 Full Python script:
+    - Selenium Script for URL Check, Telegram bot msg and Email msg:
+    - https://chatgpt.com/share/66ffd7ea-8690-8001-9b42-63d4aac96fc2
+
+-30th Sept------------------------------------------------------------------------------------------------
+
+5 sistemas web3depin: 1º Geodnet (mede as antenas precisão gps)
+
+2º Helium (hotspots the lorawan)
+
+Weatherxm (estações meteorológicas) Planetwatch (estações qualidade do ar) Wingbits (medir aviões): prov não vai dar
+
+Objs: 1º mandar alertas por telegram bot se algum sistema falhar 2º Estado diário das antenas 3ª Dashboard
+
+Passos: 1st Implementar para GeodNet 1º Investigar sobre os motores de AI com os 50/100 créditos Ver o que dá para fazer com cada ferramenta - Browse AI - Bardeen AI
+
+2º Se há alternativas free das ferramentas AI
+
+3º HELIUM - Investigar sobre APIs públicos e se o sistema de alertas do Helium é bom suficiente 4º Gmail scripts para converter um email numa msg telegram / ios notifications
+
+Versão ideal: Modelos AI (Soluções inteligentes que não precise de reprogramar cada vez que mudem os sites) Versão tradicional: Web scraping com php ou python Versão SaaS: usar o software das próprias plataformas (só helium tem boas)
