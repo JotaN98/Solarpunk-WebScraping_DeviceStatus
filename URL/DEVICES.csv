@@ -1,6 +1,6 @@
-ID,LOCATION,URL
-A0EE9,jose martins,https://console.geodnet.com/map?mount=A0EE9
-B5191,zita,https://console.geodnet.com/map?mount=B5191
+ID,LOCATION,URL,KADOA_API_ID
+A0EE9,jose martins,https://console.geodnet.com/map?mount=A0EE9,66ffd7ac3ac79d8302541cc9
+B5191,zita,https://console.geodnet.com/map?mount=B5191,6704ffd81bdbff20b479e991
 DB7B1,swapan,https://console.geodnet.com/map?mount=DB7B1
 B09ED,ananda kalyani,https://console.geodnet.com/map?mount=B09ED
 5E2E9,manuel casa pais,https://console.geodnet.com/map?mount=5E2E9
