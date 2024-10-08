@@ -1,7 +1,6 @@
 TODOS:
-- Make a hybrid code
-- store sensitive data
-
+- script to run Kadoa workflow
+- access data on telegram command
 
 Meeting notes:
 - Kadoa notes
