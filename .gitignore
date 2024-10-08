@@ -1,7 +1,6 @@
 ### Python template
 tests.py
-telegram_tokens.gitignore
-kadoa_tokens.gitignore
+tokens.gitignore
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
