@@ -1,5 +1,5 @@
-**Solarpunk-Web3depin**
-Project for Solarpunk® in webscraping the status of different devices
+**Solarpunk-WebScraping_DeviceStatus**
+Project for Solarpunk® in webscraping the status of several mounted devices
 
 
 **5 sistemas web3depin:**
