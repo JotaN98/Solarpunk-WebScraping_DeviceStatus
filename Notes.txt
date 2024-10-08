@@ -3,10 +3,18 @@ TODOS:
 - store sensitive data
 
 
-
 Meeting notes:
+- Kadoa notes
+    - 50 data scraping operations per month (500 credits a month, each operation costs 10)
+    - 39$/month you can make Kadoa check daily/weekly if data (online days) changes (but not if data changes but if changs to offline!
+
+-Selenium notes
+    - Concern about server integration
+    - Selenium takes long to load and sometimes doesn't load the page
+        - Need to check better functions/webscraping libraries
 
 -Perguntar ao manel onde e como é que ele guarda o telegram bot token e chat id
+    - Localmente no servidor? is that safe?
 
 
 -4th Oct-------------------------------------------------------------------------------------------------
