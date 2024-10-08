@@ -1,3 +1,7 @@
-import telegram_bot
 
-telegram_bot.send_message("test test 123")
+x = "83 days"
+message = f"Online for: {x}"
+
+message += "does this work"
+
+print(message)
