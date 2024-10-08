@@ -2,6 +2,7 @@ TODOS:
 - script to run Kadoa workflow
 - access data on telegram command
 
+
 Meeting notes:
 - Kadoa notes
     - 50 data scraping operations per month (500 credits a month, each operation costs 10)
