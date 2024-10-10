@@ -7,8 +7,9 @@ def main():
 
     #executes web scraping and sends telegram msgs about the state of each device id, location
     for index,row in devices.iterrows():
-        #webscraping with selenium and geodnet
-        web_scraping.selenium_geodnet(row["ID"],row["LOCATION"],row["URL"])
+        #webscraping with selenium on geodnet website
+        # Input: Device ID, Location, URL, Wait time in seconds
+        web_scraping.selenium_geodnet(row["ID"],row["LOCATION"],row["URL"],60)
 
 
 if __name__ == "__main__":
