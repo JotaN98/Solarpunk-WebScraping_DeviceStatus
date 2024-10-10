@@ -1,14 +1,14 @@
 TODOS:
--
+- meter a correr diariamente no servidor
+- telegram command
+- So mandar msg se não tá a funcionar
+- Mandar relatório diário (por enquanto) de fucionamento do script
 
 
 Meeting notes:
 
 
 -9th Oct-------------------------------------------------------------------------------------------------
-
-- mostrar texto detalhado do div content
-- mudar a if condition para if "ago" in div.text
 
 - meter a correr diariamente no servidor
 - telegram command
