@@ -4,9 +4,15 @@ from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 import time, telegram_bot
 
+#finds the line that contains 'online' text
+def find_online_line(text):
+    for line in text.splitlines():
+        if "online" in line.lower():
+            return line
+
 #--------------SELENIUM CHROME DRIVER SCRAPIN--------------------------------
 
-def selenium_geodnet(id,location,url):
+def selenium_geodnet(id,location,url,wait):
 
     # Initialize Chrome WebDriver using webdriver-manager
     options = webdriver.ChromeOptions()
@@ -23,16 +29,16 @@ def selenium_geodnet(id,location,url):
         print(f"🔍 Loading URL: {url}")
         driver.get(url)
 
-        # Wait for 30 seconds to allow the page to load completely
-        print("⏳ Waiting for 60 seconds to allow the page to load...")
-        time.sleep(60)
+        # Wait for {wait} seconds to allow the page to load completely
+        print(f"⏳ Waiting for {wait} seconds to allow the page to load...")
+        time.sleep(wait)
 
         # Attempt to find the DIV element with class "leaflet-popup-content-wrapper"
         try:
             popup_div = driver.find_element(By.CLASS_NAME, "leaflet-popup-content-wrapper")
-            print("✅ Successfully found the DIV with class 'leaflet-popup-content-wrapper'.")
+            print("✅ Successfully found the DIV 'leaflet-popup-content-wrapper'.")
         except Exception as e:
-            error_message = f"⚠️ Error: Could not find the DIV with class 'leaflet-popup-content' on {url}.\n Exception: {e}"
+            error_message = f"❌ Error: Could not find the DIV 'leaflet-popup-content-wrapper' on {url}.\n Exception: {e}"
             print(error_message)
             telegram_bot.send_message(error_message)
             return  # Exit the function if the DIV is not found
@@ -41,13 +47,13 @@ def selenium_geodnet(id,location,url):
         div_text = popup_div.text
         print(f"📝 Content of 'leaflet-popup-pane' DIV:\n{div_text}")
 
-        # Check if the text "Online:" exists within the DIV's text
-        if "Online:" in div_text:
-            result_message = f"✅\nDevice: {id}\nLocation: {location}\nThe text 'Online:' was FOUND within the DIV."
+        # Check if the text "ago" exists within the DIV's text (i.e. 'Last online 1 hour ago')
+        if "ago" in div_text:
+            result_message = f"⚠️\nDevice: {id} appears to be offline!\nLocation: {location.upper()}\n{find_online_line(div_text)}\nCheck the link: {url}"
             print(result_message)
             telegram_bot.send_message(result_message)
         else:
-            result_message = f"⚠️\nDevice: {id} appears to be offline!\nLocation: {location}: The text 'Online:' was NOT FOUND within the DIV.\nCheck the link: {url}"
+            result_message = f"✅\nDevice: {id}\nLocation: {location.upper()}\n{find_online_line(div_text)}."
             print(result_message)
             telegram_bot.send_message(result_message)
 
