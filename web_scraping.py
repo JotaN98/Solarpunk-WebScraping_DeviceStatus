@@ -2,7 +2,8 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
-import time, telegram_bot
+import time, log_keeper
+
 
 #finds the line that contains 'online' text
 def find_online_line(text):
@@ -19,7 +20,7 @@ def selenium_geodnet(id,location,url,wait):
 
     # Optional: Run Chrome in headless mode (without GUI)
     # Uncomment the following line to enable headless mode
-    # options.add_argument('--headless')
+    options.add_argument('--headless')
 
     # Initialize the Chrome driver
     driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options)
@@ -38,9 +39,10 @@ def selenium_geodnet(id,location,url,wait):
             popup_div = driver.find_element(By.CLASS_NAME, "leaflet-popup-content-wrapper")
             print("✅ Successfully found the DIV 'leaflet-popup-content-wrapper'.")
         except Exception as e:
-            error_message = f"❌ Error: Could not find the DIV 'leaflet-popup-content-wrapper' on {url}.\n Exception: {e}"
+            error_message = f"❌ Error: Could not find the 'leaflet-popup-content-wrapper' on {url} | {e}"
             print(error_message)
-            telegram_bot.send_message(error_message)
+            #records in the log if the DIV was not found
+            log_keeper.write_log(error_message.splitlines()[0])
             return  # Exit the function if the DIV is not found
 
         # Retrieve the text content of the DIV
@@ -49,13 +51,13 @@ def selenium_geodnet(id,location,url,wait):
 
         # Check if the text "ago" exists within the DIV's text (i.e. 'Last online 1 hour ago')
         if "ago" in div_text:
-            result_message = f"⚠️\nDevice: {id} appears to be offline!\nLocation: {location.upper()}\n{find_online_line(div_text)}\nCheck the link: {url}"
+            result_message = f"⚠️ Warning! | Device: {id} appears to be offline! | Location: {location.upper()} | {find_online_line(div_text)} | Check the link: {url}"
             print(result_message)
-            telegram_bot.send_message(result_message)
+            log_keeper.write_log(result_message)
         else:
-            result_message = f"✅\nDevice: {id}\nLocation: {location.upper()}\n{find_online_line(div_text)}."
+            result_message = f"✅ Device: {id} | Location: {location.upper()} | {find_online_line(div_text)}."
             print(result_message)
-            telegram_bot.send_message(result_message)
+            log_keeper.write_log(result_message)
 
     finally:
         # Close the browser after the operations
