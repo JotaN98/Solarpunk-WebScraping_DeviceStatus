@@ -20,7 +20,7 @@ def report(date):
         print(exception_message)
         telegram_bot.send_message(exception_message.splitlines()[0])
 
-    telegram_bot.send_message(f"🤖 Report from {date}\nDevices status: {nr_devices-nr_warnings} / {nr_devices} online \nCouldn't view the popup content on {nr_errors} / {nr_devices} devices")
+    telegram_bot.send_message(f"🤖📝 Report from {date}\nDevices status: {nr_devices-nr_warnings} / {nr_devices} online \nCouldn't view the popup content on {nr_errors} / {nr_devices} devices")
 
     if nr_warnings != 0:
         for line in warnings:
