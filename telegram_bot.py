@@ -1,18 +1,17 @@
 import requests
 
 def send_message(message):
-    """
-    Sends a message to a specified Telegram chat using the Telegram Bot API.
-    """
+    #Sends a message to a specified Telegram chat using the Telegram Bot API.
+
     with open("tokens.gitignore") as f:
         text = f.readlines()
         # Configuration for Telegram
-        TELEGRAM_BOT_TOKEN = text[0].strip()  # BOT API TOKEN
-        TELEGRAM_CHAT_ID = text[1].strip()  # CHAT ID
+        bot_token = text[0].strip()  # BOT API TOKEN
+        chat_id = text[1].strip()  # CHAT ID
 
-    url = f'https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage'
+    url = f'https://api.telegram.org/bot{bot_token}/sendMessage'
     payload = {
-        'chat_id': TELEGRAM_CHAT_ID,
+        'chat_id': chat_id,
         'text': message,
         'parse_mode': 'Markdown'  # Optional: Enables Markdown formatting
     }
