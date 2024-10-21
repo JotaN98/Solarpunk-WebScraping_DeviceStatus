@@ -7,16 +7,18 @@ def main():
     #imports devices csv file into dataframe
     devices = pandas.read_csv("DEVICES.csv")
 
-    #stamps the log with current date & time (only necessary to keep it readable for humans)
+    #stamps the log with current date & time
+    #(only necessary to keep it readable for humans)
     log_keeper.init()
 
-    #executes web scraping and sends telegram msgs about the state of each device id, location
+    #executes web scraping of each devices status according to their id, location, url
     for index,row in devices.iterrows():
         #webscraping with selenium on geodnet website
         #Input: Device ID, Location, URL, Wait time in seconds
         #Output: records the results of the operations in "logbook.txt" file
         web_scraping.selenium_geodnet(row["ID"],row["LOCATION"],row["URL"],60)
 
+    #Sends a report of today as a telegram msg
     reporter.report(datetime.now().date())
 
 
