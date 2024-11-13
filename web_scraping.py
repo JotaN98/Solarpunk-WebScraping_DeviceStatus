@@ -21,9 +21,12 @@ def selenium_geodnet(id,location,url,wait):
     # Optional: Run Chrome in headless mode (without GUI)
     # Uncomment the following line to enable headless mode
     options.add_argument('--headless')
-
-    # Initialize the Chrome driver
-    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options)
+    try:
+        # Initialize the Chrome driver
+        driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options)
+    except Exception as e:
+        print(f"{e}")
+        exit()
 
     try:
         # Navigate to the URL
@@ -61,6 +64,8 @@ def selenium_geodnet(id,location,url,wait):
 
     finally:
         # Close the browser after the operations
-        print("🔒 Closing the browser.")
-        driver.quit()
-
+        try:
+            print("🔒 Closing the browser.")
+            driver.quit()
+        except Exception as e:
+            print(f"{e}")
