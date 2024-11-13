@@ -19,11 +19,19 @@ def selenium_geodnet(id,location,url,wait):
     options = webdriver.ChromeOptions()
 
     # Optional: Run Chrome in headless mode (without GUI)
-    # Uncomment the following line to enable headless mode
+    options = webdriver.ChromeOptions()
     options.add_argument('--headless')
+    options.add_argument('--no-sandbox')  # Required in some Linux environments
+    options.add_argument('--disable-dev-shm-usage')  # Overcome limited resource problems
+    options.add_argument('--disable-gpu')  # Disable GPU hardware acceleration (useful for Linux)
+    options.add_argument('--disable-software-rasterizer')  # Ensures no GPU processing is done
+    options.add_argument("--enable-logging")
+    options.add_argument("--v=1")
+
     try:
         # Initialize the Chrome driver
-        driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options)
+        service = ChromeService(ChromeDriverManager().install())
+        driver = webdriver.Chrome(service=service, options=options)
     except Exception as e:
         print(f"{e}")
         exit()
