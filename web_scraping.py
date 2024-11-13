@@ -71,7 +71,6 @@ def selenium_geodnet(id,location,url,wait):
             log_keeper.write_log(result_message)
     except Exception as e:
         print(f"{e}")
-
     finally:
         # Close the browser after the operations
         try:
