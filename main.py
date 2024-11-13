@@ -16,6 +16,9 @@ def main():
         #Output: records the results of the operations in "logbook.txt" file
         web_scraping.selenium_geodnet(row["ID"],row["LOCATION"],row["URL"],40)
 
+        # a consider hromdeiver installer a cada iteração
+        # tme.sleep nao boa pratica, esperar por eventos
+
     #Sends a report of today as a telegram msg
     log_keeper.report(datetime.now().date())
 

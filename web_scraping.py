@@ -69,6 +69,8 @@ def selenium_geodnet(id,location,url,wait):
             result_message = f"Device: {id} | Location: {location.upper()} | {find_online_line(div_text)}."
             print(f"✅ {result_message}")
             log_keeper.write_log(result_message)
+    except Exception as e:
+        print(f"{e}")
 
     finally:
         # Close the browser after the operations
