@@ -1,7 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.common.by import By
-from webdriver_manager.chrome import ChromeDriverManager
 import time, log_keeper
 
 
@@ -13,7 +12,7 @@ def find_online_line(text):
 
 #--------------SELENIUM CHROME DRIVER SCRAPIN--------------------------------
 
-def selenium_geodnet(id,location,url,wait):
+def selenium_geodnet(id,location,url,wait,driver_manager):
 
     # Initialize Chrome WebDriver using webdriver-manager
     options = webdriver.ChromeOptions()
@@ -30,7 +29,7 @@ def selenium_geodnet(id,location,url,wait):
 
     try:
         # Initialize the Chrome driver
-        service = ChromeService(ChromeDriverManager().install())
+        service = ChromeService(driver_manager)
         driver = webdriver.Chrome(service=service, options=options)
     except Exception as e:
         print(f"{e}")
