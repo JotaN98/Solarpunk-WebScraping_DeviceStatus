@@ -35,8 +35,9 @@ def selenium_geodnet(id,location,url,wait,driver_manager):
         driver = webdriver.Chrome(service=service, options=options)
         print("cheguei 2")
     except Exception as e:
-        print(e)
-        print(e.args)
+        print(f"EXCEPTION: {e}")
+        print(f"EXCEPTION ARGS: {e.args}")
+        print(type(e))
         exit()
 
     try:
@@ -73,11 +74,11 @@ def selenium_geodnet(id,location,url,wait,driver_manager):
             print(f"✅ {result_message}")
             log_keeper.write_log(result_message)
     except Exception as e:
-        print(f"{e}")
+        print(e)
     finally:
         # Close the browser after the operations
         try:
             print("🔒 Closing the browser.")
             driver.quit()
         except Exception as e:
-            print(f"{e}")
+            print(e)
