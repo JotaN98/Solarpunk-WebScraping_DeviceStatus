@@ -20,12 +20,13 @@ def selenium_geodnet(id,location,url,wait,driver_manager):
     # Optional: Run Chrome in headless mode (without GUI)
     options = webdriver.ChromeOptions()
     options.add_argument('--headless')
-    options.add_argument('--no-sandbox')  # Required in some Linux environments
+    #options.add_argument('--no-sandbox')  # Required in some Linux environments
     options.add_argument('--disable-dev-shm-usage')  # Overcome limited resource problems
     options.add_argument('--disable-gpu')  # Disable GPU hardware acceleration (useful for Linux)
     options.add_argument('--disable-software-rasterizer')  # Ensures no GPU processing is done
-    options.add_argument("--enable-logging")
-    options.add_argument("--v=1")
+
+    #options.add_argument("--enable-logging")
+    #options.add_argument("--v=1")
 
     try:
         # Initialize the Chrome driver
@@ -35,9 +36,7 @@ def selenium_geodnet(id,location,url,wait,driver_manager):
         driver = webdriver.Chrome(service=service, options=options)
         print("cheguei 2")
     except Exception as e:
-        print(f"EXCEPTION: {e}")
-        print(f"EXCEPTION ARGS: {e.args}")
-        print(type(e))
+        print(e)
         exit()
 
     try:
