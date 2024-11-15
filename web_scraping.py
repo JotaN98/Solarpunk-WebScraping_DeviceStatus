@@ -35,7 +35,8 @@ def selenium_geodnet(id,location,url,wait,driver_manager):
         driver = webdriver.Chrome(service=service, options=options)
         print("cheguei 2")
     except Exception as e:
-        print(f"{e}")
+        print(e)
+        print(e.args)
         exit()
 
     try:
