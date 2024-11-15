@@ -46,6 +46,8 @@ def selenium_geodnet(id,location,url,wait,driver_manager):
 
         # Attempt to find the DIV element with class "leaflet-popup-content-wrapper"
         try:
+            print(f"{"PAGE SOURCE",driver.page_source}")
+
             popup_div = driver.find_element(By.CLASS_NAME, "leaflet-popup-content-wrapper")
             print("✅ Successfully found the DIV 'leaflet-popup-content-wrapper'.")
         except Exception as e:
