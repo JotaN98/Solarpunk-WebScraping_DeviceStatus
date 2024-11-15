@@ -29,7 +29,8 @@ def selenium_geodnet(id,location,url,wait,driver_manager):
 
     try:
         # Initialize the Chrome driver
-        service = ChromeService(driver_manager).port(80)
+        service = ChromeService(driver_manager)
+        service.port = 80
 
         driver = webdriver.Chrome(service=service, options=options)
     except Exception as e:
