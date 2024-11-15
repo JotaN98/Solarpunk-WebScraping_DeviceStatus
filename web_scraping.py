@@ -30,7 +30,7 @@ def selenium_geodnet(id,location,url,wait,driver_manager):
     try:
         # Initialize the Chrome driver
         service = ChromeService(driver_manager)
-        service.port = 80
+        #service.port = 80
         print("cheguei")
         driver = webdriver.Chrome(service=service, options=options)
         print("cheguei 2")
