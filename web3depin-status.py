@@ -17,11 +17,12 @@ def main():
         #Output: records the results of the operations in "logbook.txt" file
         web_scraping.selenium_geodnet(row["ID"],row["LOCATION"],row["URL"],40, driver_manager)
 
-        # a consider hromdeiver installer a cada iteração
         # tme.sleep nao boa pratica, esperar por eventos
+        # !!! UPDATE LOG KEEPER TO ALLOW SEVERAL LOGS ON THE SAME DAY
 
     #Sends a report of today as a telegram msg
-    log_keeper.report(datetime.now().date())
+    log_keeper.report(datetime.now().date(), datetime.now().hour)
+
 
 
 if __name__ == "__main__":
