@@ -7,7 +7,7 @@ def playwright_geodnet(id, location, url, wait):
     with sync_playwright() as p:
         try:
             # Launch a headless browser
-            browser = p.chromium.launch(headless=True)
+            browser = p.webkit.launch(headless=True)
             page = browser.new_page()
 
             # Navigate to the URL
